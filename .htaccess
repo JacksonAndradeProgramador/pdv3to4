@@ -1,17 +1,8 @@
-DirectoryIndex index.php index.html
+# Impede o acesso a diretórios
+Options -Indexes
 
-<IfModule mod_rewrite.c>
-
+# Redireciona todas as requisições para o front controller (index.php)
 RewriteEngine On
-RewriteBase /pdv/
-RewriteCond $1 !^(index\.php|assets|install|update) 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-
-# For godady Shared Hosting Server uncomment the line below
-# RewriteRule ^(.*)$ index.php?/$1 [L]
-
-# Please comment this if you have uncommented the above
-RewriteRule ^(.*)$ index.php/$1 [NC,L,QSA]
-
-</IfModule>
+RewriteRule ^(.*)$ index.php/$1 [L]
